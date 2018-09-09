@@ -123,7 +123,6 @@ int array_ordenar(int* pArray, int limite, int order)
             array_minimoDesde(pArray,limite, j, &primerIndice);
             array_swap(&pArray[j], &pArray[primerIndice]);
         }
-        retorno = 0;
     }
     return retorno;
 }
@@ -174,7 +173,6 @@ int array_ordenar2(int* pArray, int limite, int order)
                 }
             }
         }while(flagSwap);
-        retorno = 0;
     }
     return retorno;
 }
