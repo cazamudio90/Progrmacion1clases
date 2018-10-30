@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-int getString(char* pBuffer,int limite){
+/*int getString(char* pBuffer,int limite){
     char bufferString[4096];
     int retorno =-1;
     if (pBuffer != NULL && limite >0){
@@ -18,7 +18,7 @@ int getString(char* pBuffer,int limite){
         }
     }
     return retorno;
-}
+}*/
 int isValidSoloNumeros(char *pBuffer, int limite)
 {
     int retorno = 0;
@@ -38,6 +38,51 @@ int isValidSoloNumeros(char *pBuffer, int limite)
     }
     return retorno;
 }
+int utn_isValidNombre(char* pBuffer,int limite)
+{
+    int retorno = 0;
+    int i;
+    if(pBuffer != NULL && limite > 0)
+    {
+        retorno = 1;
+        for(i=0;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if(tolower(pBuffer[i]) < 'a' || tolower(pBuffer[i]) > 'z')
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
+* \brief Evalua si se trata de un entero
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+int isValidEntero(char *pBuffer, int limite)
+{
+    int retorno = 0;
+    int i;
+    if  ((pBuffer != NULL && limite > 0 ) &&
+        (pBuffer[0] == '-' || pBuffer[0] == '+' ||
+        (pBuffer[0]>='0' && pBuffer[0]<='9')))
+    {
+        retorno = 1;
+        for(i=1;i < limite && pBuffer[i] != '\0';i++)
+        {
+            if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
+            {
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
 int utn_getNumeros(   char *pEntero, int limite, char *mensaje, char *mensajeError, int reintentos)
 {
     int retorno=-1;
@@ -49,7 +94,7 @@ int utn_getNumeros(   char *pEntero, int limite, char *mensaje, char *mensajeErr
         {
             reintentos--;
             printf("\n%s", mensaje);
-            if( getString(buffer, limite) == 0 &&
+            if( utn_getString(buffer, limite) == 0 &&
                 isValidSoloNumeros(buffer, limite))
             {
                 strncpy(pEntero, buffer, limite);
@@ -69,7 +114,7 @@ int utn_getLetrasYNumeros(char* pBuffer,int limite,char* msj){
     int retorno=-1;
     char aux[limite];
     printf("%s",msj);
-    if (pBuffer!=NULL&&limite>0&&getString(aux,limite)==0)
+    if (pBuffer!=NULL&&limite>0&& utn_getString(aux,limite)==0)
         {
             retorno=0;
             strncpy(pBuffer,aux,limite);
@@ -137,51 +182,7 @@ int utn_getString(char* pBuffer, int limite)
     }
     return retorno;
 }
-int utn_isValidNombre(char* pBuffer,int limite)
-{
-    int retorno = 0;
-    int i;
-    if(pBuffer != NULL && limite > 0)
-    {
-        retorno = 1;
-        for(i=0;i < limite && pBuffer[i] != '\0';i++)
-        {
-            if(tolower(pBuffer[i]) < 'a' || tolower(pBuffer[i]) > 'z')
-            {
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-/**
-* \brief Evalua si se trata de un entero
-* \param pBuffer Es la cadena que evaluamos
-* \param limite Es el numero maximo de cifras
-* \return En caso de exito retorna 1, si no 0
-*
-*/
-int isValidEntero(char *pBuffer, int limite)
-{
-    int retorno = 0;
-    int i;
-    if  ((pBuffer != NULL && limite > 0 ) &&
-        (pBuffer[0] == '-' || pBuffer[0] == '+' ||
-        (pBuffer[0]>='0' && pBuffer[0]<='9')))
-    {
-        retorno = 1;
-        for(i=1;i < limite && pBuffer[i] != '\0';i++)
-        {
-            if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
-            {
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
+
 /**
 * \brief    Toma la cadena y evalua si es un entero en caso de exito lo transforma a entero
 * \param pEntero Recibe el numero ingresado en caso de exito

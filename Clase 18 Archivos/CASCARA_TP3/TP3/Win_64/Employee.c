@@ -22,12 +22,11 @@ Employee* Employee_newConParametros(char* idStr,char* nombreStr,char* horasTraba
 {
     Employee* this;
     this=Employee_new();
-
     if(
-    !Employee_setId(this,atoi(idStr))&&
-    !Employee_setNombre(this,nombreStr)&&
-    !Employee_setHorasTrabajadas(this,atoi(horasTrabajadasStr))&&
-    !Employee_setSueldo(this,atoi(sueldoStr)))
+        !Employee_setId(this, atoi(idStr))&&
+        !Employee_setNombre(this,nombreStr)&&
+        !Employee_setHorasTrabajadas(this,atoi(horasTrabajadasStr))&&
+        !Employee_setSueldo(this, atoi(sueldoStr)))
         return this;
 
     Employee_delete(this);
