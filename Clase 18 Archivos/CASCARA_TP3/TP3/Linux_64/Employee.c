@@ -4,25 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "LinkedList.h"
-
-static int utn_isValidNombre(char* pBuffer, int limite)
-{
-    int retorno = 0;
-    int i;
-    if(pBuffer != NULL && limite > 0)
-    {
-        retorno = 1;
-        for(i=0;i < limite && pBuffer[i] != '\0';i++)
-        {
-            if(tolower(pBuffer[i]) < 'a' || tolower(pBuffer[i]) > 'z')
-            {
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
+#include "utn.h"
 
 Employee* Employee_new()
 {
@@ -175,3 +157,63 @@ int Employee_getSueldo(Employee* this,int* sueldo)
    }
     return retorno;
  }
+/**
+* \brief    Se utiliza esta funcion para obtener un nuevo id
+*           declarando una variable static para el id y suma 1 al anterior
+* \return devuelve un id vacio
+*/
+int getNextId(LinkedList* pArrayListEmployee)
+{
+    static int ultimoId = -1;
+    int i;
+    int id;
+    Employee * auxPunteroEmpleado;
+    if(pArrayListEmployee != NULL)
+    {
+        for (i = 1; i<= ll_len(pArrayListEmployee); i++)
+        {
+            if(i == ll_len(pArrayListEmployee))
+            {
+                auxPunteroEmpleado = ll_get(pArrayListEmployee,i-1);
+                Employee_getId(auxPunteroEmpleado, &id);
+                ultimoId = id + 1;
+            }
+        }
+    }
+    return ultimoId;
+}
+/** \brief Busca empleado por Id
+*
+*
+**/
+int Employee_BuscarPorId (LinkedList * pArrayListEmployee, int id)
+{
+    int retorno = -1;
+    int i;
+    int bufferId;
+    char bufferNombre[128];
+    int bufferHorasTrabajo;
+    int bufferSueldo;
+    Employee * auxPunteroEmpleado;
+    if (pArrayListEmployee != NULL && id >= 0)
+    {
+        for (i = 1; i< ll_len(pArrayListEmployee); i++)
+        {
+            auxPunteroEmpleado = ll_get(pArrayListEmployee,i);
+            Employee_getId(auxPunteroEmpleado,&bufferId);
+            if ( bufferId == id &&
+                utn_getNombre(bufferNombre,128,"Modifique el nombre\n", "Nombre Invalido\n",3) ==0 &&
+                utn_getEntero(&bufferHorasTrabajo,10,"Modifique las horas Trabajadas\n", "Horas invalidas\n",3) == 0 &&
+                utn_getEntero(&bufferSueldo, 10, "Modifique el Sueldo\n","Sueldo invalido\n",3)==0)
+            {
+               Employee_setNombre(auxPunteroEmpleado,bufferNombre);
+               Employee_setHorasTrabajadas(auxPunteroEmpleado, bufferHorasTrabajo);
+               Employee_setSueldo(auxPunteroEmpleado,bufferSueldo);
+               retorno = 0;
+               break;
+            }
+        }
+    }
+
+    return retorno;
+}
