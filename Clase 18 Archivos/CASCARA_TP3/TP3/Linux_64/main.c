@@ -44,6 +44,7 @@ int main()
             printf("\nSize de la lista %d\n", ll_len(listaEmpleados));
             break;
             case 2:
+            controller_loadFromBinary("data.bin",listaEmpleados);
             break;
             case 3:
             if (controller_addEmployee(listaEmpleados)== 0)
@@ -52,7 +53,13 @@ int main()
             }
             break;
             case 4:
-            controller_editEmployee(listaEmpleados);
+            if(controller_editEmployee(listaEmpleados)==0)
+            {
+                printf("Empleado modificado\n");
+            }else
+            {
+                printf("No existe ID");
+            }
             break;
             case 5:
             if (controller_removeEmployee(listaEmpleados)== 0)
@@ -68,6 +75,7 @@ int main()
             case 8:
             break;
             case 9:
+            controller_saveAsBinary("data.bin", listaEmpleados);
             break;
             case 10:
             printf("salio\n");

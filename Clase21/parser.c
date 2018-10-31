@@ -12,13 +12,15 @@
  */
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
-    int retorno = -1;
-    char bufferId[1024];
+    char bufferInt[1024];
     char bufferNombre[1024];
     char bufferHorasTrabajadas[1024];
     char bufferSueldo[1024];
+    int retorno = -1;
+    int flagOnce=1;
     Employee * pEmpleado;
-    int flagOnce = 1;
+
+
     if(pFile != NULL)
     {
         while(!feof(pFile))
@@ -26,28 +28,31 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
             if(flagOnce)
             {
                 flagOnce = 0;
-                fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n",
-                        bufferId,
-                        bufferNombre,
-                        bufferHorasTrabajadas,
-                        bufferSueldo);
-
-            }
-            fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n",
-                        bufferId,
-                        bufferNombre,
-                        bufferHorasTrabajadas,
-                        bufferSueldo);
-            pEmpleado = Employee_newConParametros( bufferId,
+                fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
+                                        bufferInt,
                                         bufferNombre,
                                         bufferHorasTrabajadas,
                                         bufferSueldo);
+            }
+            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",
+                                        bufferInt,
+                                        bufferNombre,
+                                        bufferHorasTrabajadas,
+                                        bufferSueldo);
+            //printf("\n%s",bufferNombre);
+
+            pEmpleado = employee_newConParametros(
+                                        bufferInt,
+                                        bufferNombre,
+                                        bufferHorasTrabajadas,
+                                        bufferSueldo);
+
             if(pEmpleado != NULL)
             {
                 retorno = 0;
-                ll_add(pArrayListEmployee, pEmpleado);
-
+                ll_add(pArrayListEmployee,pEmpleado);
             }
+
         }
     }
     return retorno;
@@ -62,18 +67,21 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
-
     int retorno = -1;
-    Employee * pEmpleado;
+    Employee* pEmpleado;
+
+
     if(pFile != NULL)
     {
+        retorno = 0;
         while(!feof(pFile))
         {
-            pEmpleado = Employee_new();
-            fread(pEmpleado, sizeof(Employee), 1, pFile);
-            ll_add(pArrayListEmployee,pEmpleado);
+            pEmpleado = employee_new();
+            fread(pEmpleado,sizeof(Employee),1,pFile);
+            printf("----%s*****",pEmpleado->nombre);
+            //ll_add(pArrayListEmployee,pEmpleado);
         }
-        retorno = 0;
+
     }
     return retorno;
 }

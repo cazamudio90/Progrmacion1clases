@@ -1,3 +1,4 @@
+#include <stdio_ext.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "LinkedList.h"
@@ -34,7 +35,15 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* pArchivo;
+    int retorno = -1;
+    pArchivo = fopen(path,"rb");
+    if(!parser_EmployeeFromBinary(pArchivo, pArrayListEmployee))
+    {
+        retorno = 0;
+    }
+    fclose(pArchivo);
+    return retorno;
 }
 
 /** \brief Alta de empleados
@@ -83,11 +92,12 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno = -1;
     int id;
+    __fpurge(stdin);
     if (pArrayListEmployee != NULL &&
-        utn_getEntero(&id, 10, "Ingrese id", "id invalido", 3) == 0
+        utn_getEntero(&id, 10, "Ingrese id\n", "id invalido\n", 3) == 0
         && Employee_BuscarPorId (pArrayListEmployee, id)== 0)
     {
-      printf("Empleado modificado\n");
+      retorno = 0;
     }
 
     return retorno;
@@ -118,6 +128,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
             if(bufferId == id)
             {
              Employee_delete(auxPunteroEmpleado);
+             ll_remove(pArrayListEmployee,i);
              retorno = 0;
              break;
             }
@@ -181,6 +192,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
+
     return 1;
 }
 
@@ -193,6 +205,23 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = -1;
+    FILE *pArchivo = fopen(path,"wb");
+    int i;
+    Employee * auxPunteroEmployee;
+    char nombre[128];
+    if(pArchivo != NULL)
+    {
+        for(i=0; i< ll_len(pArrayListEmployee); i++)
+        {
+            auxPunteroEmployee = ll_get(pArrayListEmployee,i);
+            /*Employee_getNombre(auxPunteroEmployee,nombre);
+            printf("%s", nombre);*/
+            fwrite(auxPunteroEmployee,sizeof(Employee), 1, pArchivo);
+            retorno = 0;
+        }
+    }
+    fclose(pArchivo);
+    return retorno;
 }
 

@@ -7,6 +7,8 @@
 	"LinkedList.h"
 	"Employee.h"
 
+1540903845 h"
+
 1532354323 /home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/LinkedList.h
 
 1533062926 /home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/Employee.h
@@ -60,6 +62,8 @@
 	"Employee.h"
 	"parser.h"
 
+1540907682 
+
 1533133022 /home/alumno/Descargas/CASCARA_TP3/TP3/Linux_64/LinkedList.h
 
 1540516231 /home/alumno/Descargas/CASCARA_TP3/TP3/Linux_64/Employee.h
@@ -86,6 +90,8 @@
 	<string.h>
 	<ctype.h>
 	"LinkedList.h"
+
+1540907607 t.h"
 
 1533133022 /home/alumno/Descargas/CASCARA_TP3/TP3/Linux_64/parser.h
 
@@ -135,6 +141,112 @@
 	<ctype.h>
 
 1540862896 source:c:\users\usuario\desktop\progrmacion1clases\clase 18 archivos\cascara_tp3\tp3\win_64\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1540905488 source:c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+
+1540903845 c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\linkedlist.h
+
+1540903845 c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\employee.h
+	"LinkedList.h"
+
+1540903845 c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\parser.h
+
+1540903845 c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1540907607 source:c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\employee.c
+	"Employee.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"LinkedList.h"
+	"utn.h"
+
+1540903845 source:c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"utn.h"
+
+1540903845 c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\controller.h
+
+1540903845 source:c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1540907682 source:c:\users\cazamudi\downloads\progrmacion1clases-master\progrmacion1clases-master\clase 18 archivos\cascara_tp3\tp3\win_64\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1540947324 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Controller.c
+	<stdio_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+
+1540935356 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/LinkedList.h
+
+1540935356 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Employee.h
+	"LinkedList.h"
+
+1540935356 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/parser.h
+
+1540935356 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1540945115 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Employee.c
+	"Employee.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"LinkedList.h"
+	"utn.h"
+
+1540948136 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"utn.h"
+
+1540935356 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Controller.h
+
+1540948456 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1540942358 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/utn.c
+	<stdio_ext.h>
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

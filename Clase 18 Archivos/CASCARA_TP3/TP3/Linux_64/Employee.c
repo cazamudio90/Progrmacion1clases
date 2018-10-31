@@ -22,12 +22,11 @@ Employee* Employee_newConParametros(char* idStr,char* nombreStr,char* horasTraba
 {
     Employee* this;
     this=Employee_new();
-
     if(
-    !Employee_setId(this,atoi(idStr))&&
-    !Employee_setNombre(this,nombreStr)&&
-    !Employee_setHorasTrabajadas(this,atoi(horasTrabajadasStr))&&
-    !Employee_setSueldo(this,atoi(sueldoStr)))
+        !Employee_setId(this, atoi(idStr))&&
+        !Employee_setNombre(this,nombreStr)&&
+        !Employee_setHorasTrabajadas(this,atoi(horasTrabajadasStr))&&
+        !Employee_setSueldo(this, atoi(sueldoStr)))
         return this;
 
     Employee_delete(this);
@@ -70,11 +69,8 @@ int Employee_setNombre(Employee* this,char* nombre)
     int retorno=-1;
     if(this!=NULL && nombre!=NULL)
     {
-        /*if (utn_isValidNombre(nombre,1024))
-        {*/
-            strncpy(this->nombre,nombre, strlen(nombre));
-            retorno=0;
-        //}
+        strncpy(this->nombre,nombre, 128);
+        retorno=0;
     }
     return retorno;
 }
