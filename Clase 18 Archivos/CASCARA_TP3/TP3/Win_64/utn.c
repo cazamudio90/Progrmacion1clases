@@ -1,24 +1,9 @@
+//#include <stdio_ext.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-/*int getString(char* pBuffer,int limite){
-    char bufferString[4096];
-    int retorno =-1;
-    if (pBuffer != NULL && limite >0){
-//        __fpurge(stdin);
-        fgets(bufferString,sizeof(bufferString),stdin);
-        if (bufferString[strlen(bufferString)-1]=='\n'){
-            bufferString[strlen(bufferString)-1]='\0';
-        }
-        if(strlen(bufferString)<= limite){
-            strncpy(pBuffer,bufferString,limite);
-            retorno=0;
-        }
-    }
-    return retorno;
-}*/
 int isValidSoloNumeros(char *pBuffer, int limite)
 {
     int retorno = 0;
@@ -68,8 +53,7 @@ int isValidEntero(char *pBuffer, int limite)
     int retorno = 0;
     int i;
     if  ((pBuffer != NULL && limite > 0 ) &&
-        (pBuffer[0] == '-' || pBuffer[0] == '+' ||
-        (pBuffer[0]>='0' && pBuffer[0]<='9')))
+        (pBuffer[0] == '-' || pBuffer[0] == '+' || (pBuffer[0]>='0' && pBuffer[0]<='9')))
     {
         retorno = 1;
         for(i=1;i < limite && pBuffer[i] != '\0';i++)
@@ -77,12 +61,40 @@ int isValidEntero(char *pBuffer, int limite)
             if (!(pBuffer[i]>='0' && pBuffer[i]<='9'))
             {
                 retorno = 0;
+                printf("RETORNO %d\n", retorno);
                 break;
             }
         }
     }
     return retorno;
 }
+/**
+* \brief El usuario ingresa una cadena con fgets
+* \param pBuffer Recibe el texto ingresado en caso de exito
+* \param limite Es el tamano maximo del string
+* \return En caso de exito retorna 0, si no -1
+*/
+int utn_getString(char* pBuffer, int limite)
+{
+    int retorno = -1;
+    char bufferStr[4096];
+    int len;
+    if(pBuffer != NULL && limite > 0)
+    {
+        //__fpurge(stdin);
+        fflush(stdin);
+        fgets(bufferStr,limite,stdin);
+        len = strlen(bufferStr);
+        if(len != limite-1 ||  bufferStr[limite-2] == '\n')
+        {
+            bufferStr[len-1] = '\0';
+        }
+        retorno = 0;
+        strncpy(pBuffer,bufferStr,limite);
+    }
+    return retorno;
+}
+
 int utn_getNumeros(   char *pEntero, int limite, char *mensaje, char *mensajeError, int reintentos)
 {
     int retorno=-1;
@@ -153,32 +165,6 @@ int utn_getNombre(  char* pNombre,int limite, char* msg, char* msgErr, int reint
 
 
       }while(reintentos>=0);
-    }
-    return retorno;
-}
-/**
-* \brief El usuario ingresa una cadena con fgets
-* \param pBuffer Recibe el texto ingresado en caso de exito
-* \param limite Es el tamano maximo del string
-* \return En caso de exito retorna 0, si no -1
-*/
-int utn_getString(char* pBuffer, int limite)
-{
-    int retorno = -1;
-    char bufferStr[4096];
-    int len;
-    if(pBuffer != NULL && limite > 0)
-    {
-        //__fpurge(stdin);
-        fflush(stdin);
-        fgets(bufferStr,limite,stdin);
-        len = strlen(bufferStr);
-        if(len != limite-1 ||  bufferStr[limite-2] == '\n')
-        {
-            bufferStr[len-1] = '\0';
-        }
-        retorno = 0;
-        strncpy(pBuffer,bufferStr,limite);
     }
     return retorno;
 }

@@ -22,13 +22,22 @@ Employee* Employee_newConParametros(char* idStr,char* nombreStr,char* horasTraba
 {
     Employee* this;
     this=Employee_new();
-    if(
-        !Employee_setId(this, atoi(idStr))&&
-        !Employee_setNombre(this,nombreStr)&&
-        !Employee_setHorasTrabajadas(this,atoi(horasTrabajadasStr))&&
-        !Employee_setSueldo(this, atoi(sueldoStr)))
-        return this;
-
+    int limitId = strlen(idStr);
+    int limitNombre = strlen(nombreStr);
+    int limitHoras = strlen(horasTrabajadasStr);
+    int limitSueldo = strlen(sueldoStr);
+    if( idStr != NULL && isValidEntero(idStr,limitId) &&
+        nombreStr != NULL && utn_isValidNombre(nombreStr, limitNombre)  &&
+       horasTrabajadasStr != NULL && isValidEntero(horasTrabajadasStr,limitHoras) &&
+       sueldoStr != NULL && isValidEntero(horasTrabajadasStr,limitSueldo))
+    {
+        if(
+            !Employee_setId(this, atoi(idStr))&&
+            !Employee_setNombre(this,nombreStr)&&
+            !Employee_setHorasTrabajadas(this,atoi(horasTrabajadasStr))&&
+            !Employee_setSueldo(this, atoi(sueldoStr)))
+            return this;
+    }
     Employee_delete(this);
     return NULL;
 }
@@ -69,11 +78,8 @@ int Employee_setNombre(Employee* this,char* nombre)
     int retorno=-1;
     if(this!=NULL && nombre!=NULL)
     {
-        /*if (utn_isValidNombre(nombre,1024))
-        {*/
-            strncpy(this->nombre,nombre, strlen(nombre));
-            retorno=0;
-        //}
+        strncpy(this->nombre,nombre, 128);
+        retorno=0;
     }
     return retorno;
 }
@@ -193,25 +199,93 @@ int Employee_BuscarPorId (LinkedList * pArrayListEmployee, int id)
     char bufferNombre[128];
     int bufferHorasTrabajo;
     int bufferSueldo;
+    int opcion;
     Employee * auxPunteroEmpleado;
     if (pArrayListEmployee != NULL && id >= 0)
     {
-        for (i = 1; i< ll_len(pArrayListEmployee); i++)
+
+        do
         {
-            auxPunteroEmpleado = ll_get(pArrayListEmployee,i);
-            Employee_getId(auxPunteroEmpleado,&bufferId);
-            if ( bufferId == id &&
-                utn_getNombre(bufferNombre,128,"Modifique el nombre\n", "Nombre Invalido\n",3) ==0 &&
-                utn_getEntero(&bufferHorasTrabajo,10,"Modifique las horas Trabajadas\n", "Horas invalidas\n",3) == 0 &&
-                utn_getEntero(&bufferSueldo, 10, "Modifique el Sueldo\n","Sueldo invalido\n",3)==0)
+            for (i = 1; i< ll_len(pArrayListEmployee); i++)
             {
-               Employee_setNombre(auxPunteroEmpleado,bufferNombre);
-               Employee_setHorasTrabajadas(auxPunteroEmpleado, bufferHorasTrabajo);
-               Employee_setSueldo(auxPunteroEmpleado,bufferSueldo);
-               retorno = 0;
-               break;
-            }
-        }
+                auxPunteroEmpleado = ll_get(pArrayListEmployee,i);
+                Employee_getId(auxPunteroEmpleado,&bufferId);
+
+                if ( bufferId == id )
+                {
+                    printf("\nQue desea modificar\n");
+                    printf("1. Nombre\n");
+                    printf("2. Horas Trabajadas\n");
+                    printf("3. Sueldo\n");
+                    printf("\n\n\n\n4. Volver a menu principal\n");
+                    scanf("%d", &opcion);
+                    switch(opcion)
+                    {
+                        case 1:
+                        Employee_getNombre(auxPunteroEmpleado, bufferNombre);
+                        printf("El nombre que desea modificar es: %s\n", bufferNombre);
+                        if(utn_getNombre(bufferNombre,128,"Modifique el nombre\n", "Nombre Invalido\n",3) ==0)
+                        {
+                            Employee_setNombre(auxPunteroEmpleado,bufferNombre);
+                            printf("El nombre modificado es: %s\n", bufferNombre);
+                        }
+                        break;
+                        case 2:
+                        Employee_getHorasTrabajadas(auxPunteroEmpleado, &bufferHorasTrabajo);
+                        printf("Las horas que desea modificar: %d\n", bufferHorasTrabajo);
+                        if(utn_getEntero(&bufferHorasTrabajo,10,"Modifique las horas Trabajadas\n", "Horas invalidas\n",3) == 0 )
+                        {
+                            Employee_setHorasTrabajadas(auxPunteroEmpleado, bufferHorasTrabajo);
+                            printf("Nueva horas trabajadas: %d\n", bufferHorasTrabajo);
+                        }
+                        break;
+                        case 3:
+                        Employee_getSueldo(auxPunteroEmpleado, &bufferSueldo);
+                        printf("Las horas que desea modificar: %d\n", bufferSueldo);
+                        if(utn_getEntero(&bufferSueldo, 10, "Modifique el Sueldo\n","Sueldo invalido\n",3)==0)
+                        {
+                            Employee_setSueldo(auxPunteroEmpleado,bufferSueldo);
+                            printf("Sueldo Modificado: %d\n", bufferSueldo);
+                        }
+                        break;
+                        case 4:
+                        printf("Volvio a Menu principal");
+                        break;
+                        default:
+                        printf("Opcion no valida\n");
+                        break;
+                    }
+                    retorno = 0;
+                    break;
+                }
+             }
+         }while(opcion!= 4);
+
+    }
+  return retorno;
+}
+
+int employee_criterioSortNombre(void* thisA,void* thisB)
+{
+    char nombreA[100];
+    char nombreB[100];
+    int retorno = 0;
+
+
+
+    Employee_getNombre(thisA,nombreA);
+    Employee_getNombre(thisB,nombreB);
+
+
+    if(strcmp(nombreA,nombreB) > 0)
+    {
+       // printf("\nMAYOR");
+        retorno = 1;
+    }
+    else if(strcmp(nombreA,nombreB) < 0)
+    {
+       // printf("\nMENOR");
+        retorno = -1;
     }
 
     return retorno;
