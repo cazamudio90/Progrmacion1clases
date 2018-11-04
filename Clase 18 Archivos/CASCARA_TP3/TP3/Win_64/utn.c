@@ -3,7 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+/**
+* \brief Evalua si se trata de cuit valido
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
 int isValidSoloNumeros(char *pBuffer, int limite)
 {
     int retorno = 0;
@@ -23,6 +29,14 @@ int isValidSoloNumeros(char *pBuffer, int limite)
     }
     return retorno;
 }
+/**
+* \brief Evalua si se trata de un nombre valido
+* \param pBuffer Es la cadena que evaluamos
+* \param limite Es el numero maximo de cifras
+* \return En caso de exito retorna 1, si no 0
+*
+*/
+
 int utn_isValidNombre(char* pBuffer,int limite)
 {
     int retorno = 0;

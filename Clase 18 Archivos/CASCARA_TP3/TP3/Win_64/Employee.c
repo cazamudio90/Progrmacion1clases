@@ -139,29 +139,6 @@ int Employee_getSueldo(Employee* this,int* sueldo)
     return retorno;
 }
 
-/** \brief Mostrar todos los empleados
- *
- * \param arrayy
- * \param
- * \return int
- *
- */
- int Employee_criterioSortEmpleados(void* thisA, void* thisB)
- {
-   int retorno = 0;
-   char nombreA[50];
-   char nombreb[50];
-   Employee_getNombre(thisA, nombreA);
-   Employee_getNombre(thisA, nombreb);
-   if(strcmp(nombreA, nombreb) > 0)
-   {
-        retorno = 1;
-   }else if(strcmp(nombreA, nombreb) <0)
-   {
-        retorno = -1;
-   }
-    return retorno;
- }
 /**
 * \brief    Se utiliza esta funcion para obtener un nuevo id
 *           declarando una variable static para el id y suma 1 al anterior
@@ -175,6 +152,7 @@ int getNextId(LinkedList* pArrayListEmployee)
     Employee * auxPunteroEmpleado;
     if(pArrayListEmployee != NULL)
     {
+        ll_sort(pArrayListEmployee, Employee_sortById, 1);
         for (i = 1; i<= ll_len(pArrayListEmployee); i++)
         {
             if(i == ll_len(pArrayListEmployee))
@@ -264,29 +242,58 @@ int Employee_BuscarPorId (LinkedList * pArrayListEmployee, int id)
     }
   return retorno;
 }
-
+/** \brief Funcion que ordena por nombre
+* \param thisA *void
+* \param thisB *void
+* \return retorna 1 si es de el primero es mayor al segundo y -1 alreves.
+*/
 int employee_criterioSortNombre(void* thisA,void* thisB)
 {
     char nombreA[100];
     char nombreB[100];
     int retorno = 0;
 
-
-
-    Employee_getNombre(thisA,nombreA);
-    Employee_getNombre(thisB,nombreB);
-
-
-    if(strcmp(nombreA,nombreB) > 0)
+    if(thisA != NULL && thisB != NULL)
     {
-       // printf("\nMAYOR");
-        retorno = 1;
+        Employee_getNombre(thisA,nombreA);
+        Employee_getNombre(thisB,nombreB);
+        if(strcmp(nombreA,nombreB) > 0)
+        {
+            retorno = 1;
+        }
+        else if(strcmp(nombreA,nombreB) < 0)
+        {
+           // printf("\nMENOR");
+            retorno = -1;
+        }
     }
-    else if(strcmp(nombreA,nombreB) < 0)
-    {
-       // printf("\nMENOR");
-        retorno = -1;
-    }
+    return retorno;
+}
+/** \brief Funcion que ordena por id
+* \param thisA *void
+* \param thisB *void
+* \return retorna 1 si es de el primero es mayor al segundo y -1 alreves.
+*/
+int Employee_sortById(void* thisA,void* thisB)
+{
+    int idA;
+    int idB;
+    int retorno = 0;
 
+    if(thisA != NULL && thisB != NULL)
+    {
+        Employee_getId(thisA, &idA);
+        Employee_getId(thisB, &idB);
+        if( idA > idB)
+        {
+           // printf("\nMAYOR");
+            retorno = 1;
+        }
+        else if(idA < idB)
+        {
+           // printf("\nMENOR");
+            retorno = -1;
+        }
+    }
     return retorno;
 }

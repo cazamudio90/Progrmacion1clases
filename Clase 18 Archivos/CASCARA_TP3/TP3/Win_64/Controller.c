@@ -195,7 +195,35 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = -1;
+    int resp;
+    do
+    {
+        printf("1. Ordenar por id\n");
+        printf("2. Ordenar por nombre\n");
+        printf("3. Volver a Menu Principal\n");
+        scanf("%d", &resp);
+        switch(resp)
+        {
+            case 1:
+            ll_sort(pArrayListEmployee, Employee_sortById, 1);
+            controller_ListEmployee(pArrayListEmployee);
+            resp = 3;
+            break;
+            case 2:
+            ll_sort(pArrayListEmployee,employee_criterioSortNombre,1);
+            controller_ListEmployee(pArrayListEmployee);
+            resp = 3;
+            break;
+            case 3:
+            break;
+            default:
+            printf("Opcion no valida");
+            break;
+        }
+        retorno = 0;
+    }while (resp != 3);
+    return retorno;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
@@ -207,8 +235,20 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
-
-    return 1;
+    int retorno = -1;
+    FILE* pArchivo = fopen(path,"w+");
+    if(pArchivo != NULL && pArrayListEmployee != NULL && ll_len(pArrayListEmployee) > 0 &&
+       parser_SaveToText(pArchivo,pArrayListEmployee) == 0)
+    {
+        printf("\nSe guardo lista existosamente\n");
+        retorno = 0;
+    }
+    else
+    {
+        printf("No hay ninguna lista cargada\n");
+    }
+    fclose(pArchivo);
+    return retorno;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -288,10 +328,10 @@ void controller_mostratMenu()
             controller_ListEmployee(listaEmpleados);
             break;
             case 7:
-            ll_sort(listaEmpleados,employee_criterioSortNombre,1);
-            controller_ListEmployee(listaEmpleados);
+            controller_sortEmployee(listaEmpleados);
             break;
             case 8:
+            controller_saveAsText("data.csv", listaEmpleados);
             break;
             case 9:
             controller_saveAsBinary("data.bin", listaEmpleados);
