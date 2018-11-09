@@ -515,11 +515,52 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
-    if(this !=  NULL && (*pFunc)!= NULL && (order == 0 || order == 1))
+    int j;
+    Node * auxNode1;
+    Node * auxNode2;
+    void* element1;
+    void* element2;
+    int flagNoEstaOrdenado = 1;
+    if(this !=  NULL && pFunc!= NULL && (order == 0 || order == 1))
     {
+        while (flagNoEstaOrdenado==1)
+         {
+            flagNoEstaOrdenado = 0;
+            for (j = 1; j < ll_len(this); j++)
+            {
+                auxNode1 = getNode(this,j);
+                auxNode2 = getNode(this, j-1);
+                element1 = ll_get(this,j);
+                element2 = ll_get(this, j - 1);
+                if ( order== 1 && pFunc(element1, element2)== -1)
+                {
+                     auxNode1->pElement = element2;
+                     auxNode2->pElement = element1;
 
+                     flagNoEstaOrdenado = 1;
+                }else if(order== 0 && pFunc(element1, element2)== 1)
+                {
+                     auxNode1->pElement = element2;
+                     auxNode2->pElement = element1;
+                     flagNoEstaOrdenado = 1;
+                }
+            }
+         }
+         returnAux = 0;
     }
     return returnAux;
 
 }
 
+/** \brief Filtra los elementos de la lista utilizando la funcion criterio recibida como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \param order int  [1] Indica orden ascendente - [0] Indica orden descendente
+ * \return  Retorna  (-1) Error: si el puntero a la listas es NULL
+                                linkenlist Si ok
+ */
+
+ LinkedList * ll_filter(LinkedList* this, int (*pFunc)(void*))
+ {
+    return 1;
+ }
