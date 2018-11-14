@@ -290,3 +290,58 @@ int employee_criterioSortNombre(void* thisA,void* thisB)
 
     return retorno;
 }
+
+/**
+
+
+*/
+
+int Employee_imprimirElemeto(Employee * this)
+{
+    int returnAux = -1;
+    char nombre[128];
+    if(this != NULL)
+    {
+        Employee_getNombre(this, nombre);
+        printf("%s\n", nombre);
+
+        returnAux = 0;
+    }
+    return returnAux;
+}
+
+/**
+*
+*
+**/
+
+int Employee_crititerioParaFilter(Employee * this)
+{
+    int returnAux =-1;
+    int  id;
+    if(this != NULL)
+    {
+        Employee_getId(this,&id);
+        if(id == 980)
+        {
+            returnAux = 1;
+        }
+    }
+    return returnAux;
+}
+
+
+
+int Employee_imprimirElemetoID(Employee * this)
+{
+    int returnAux = -1;
+    int  *id;
+    if(this != NULL)
+    {
+        Employee_getId(this, &id);
+        printf("%d\n", id);
+
+        returnAux = 0;
+    }
+    return returnAux;
+}

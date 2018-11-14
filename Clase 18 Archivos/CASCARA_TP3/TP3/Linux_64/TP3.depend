@@ -7,7 +7,7 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1540903845 h"
+1540948456 h"
 
 1532354323 /home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/LinkedList.h
 
@@ -62,7 +62,7 @@
 	"Employee.h"
 	"parser.h"
 
-1540907682 
+1540942358 
 
 1533133022 /home/alumno/Descargas/CASCARA_TP3/TP3/Linux_64/LinkedList.h
 
@@ -91,7 +91,7 @@
 	<ctype.h>
 	"LinkedList.h"
 
-1540907607 t.h"
+1540945115 t.h"
 
 1533133022 /home/alumno/Descargas/CASCARA_TP3/TP3/Linux_64/parser.h
 
@@ -251,4 +251,56 @@
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
+
+1542149837 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Employee.c
+	"Employee.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"LinkedList.h"
+	"utn.h"
+
+1542149837 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Employee.h
+	"LinkedList.h"
+
+1542147598 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/LinkedList.h
+
+1542144922 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1542144922 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"utn.h"
+
+1542147432 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Controller.h
+
+1542144922 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1542144922 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1542149837 source:/home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+
+1542144922 /home/alumno/Descargas/Progrmacion1clases/Clase 18 Archivos/CASCARA_TP3/TP3/Linux_64/parser.h
 

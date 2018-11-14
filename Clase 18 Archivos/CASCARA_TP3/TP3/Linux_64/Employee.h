@@ -48,5 +48,8 @@ int getNextId(LinkedList* pArrayListEmployee);
 int Employee_BuscarPorId (LinkedList * pArrayListEmployee, int id);
 
 int employee_criterioSortNombre(void* thisA,void* thisB);
+int Employee_imprimirElemeto(Employee * this);
+int Employee_crititerioParaFilter(Employee * this);
+int Employee_imprimirElemetoID(Employee * this);
 
 #endif // EMPLOYEE_H_INCLUDED

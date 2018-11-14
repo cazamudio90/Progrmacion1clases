@@ -241,6 +241,7 @@ void controller_mostratMenu()
 {
     int option;
     LinkedList* listaEmpleados = ll_newLinkedList();
+    LinkedList* subList= ll_newLinkedList();
     do{
         printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
         printf("2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
@@ -288,8 +289,10 @@ void controller_mostratMenu()
             controller_ListEmployee(listaEmpleados);
             break;
             case 7:
-            ll_sort(listaEmpleados,employee_criterioSortNombre,1);
-            controller_ListEmployee(listaEmpleados);
+            //ll_sort(listaEmpleados,employee_criterioSortNombre,1);
+            //controller_ListEmployee(listaEmpleados);
+            subList = ll_filter(listaEmpleados, Employee_imprimirElemetoID);
+            ll_map( subList, Employee_imprimirElemetoID);
             break;
             case 8:
             break;
@@ -304,4 +307,58 @@ void controller_mostratMenu()
             break;
         }
     }while(option != 10);
+}
+
+/** \brief Filtra los elementos de la lista utilizando la funcion criterio recibida como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \param order int  [1] Indica orden ascendente - [0] Indica orden descendente
+ * \return  Retorna  (-1) Error: si el puntero a la listas es NULL
+                                linkenlist Si ok
+ */
+
+ LinkedList * ll_filter(LinkedList* this, int (*pFunc)(void*))
+ {
+    LinkedList * listFilter = NULL;
+    void * element1;
+    int i;
+    if(this != NULL && pFunc != NULL)
+    {
+       listFilter = ll_newLinkedList();
+       for(i=0; i< ll_len(this); i++)
+       {
+            element1 = ll_get(this,i);
+            if (pFunc(element1)== 0)
+            {
+                printf("entra al if\n");
+                ll_add(listFilter,element1);
+            }
+        }
+    }
+    return listFilter;
+ }
+
+ /** \brief le pasa un a una funcion un cada elemento de la lista como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \return  Retorna  (-1) Error: si el puntero a la listas es NULL
+                                (0) Si ok
+ */
+int ll_map(LinkedList * this,  int (*pFunc)(void*))
+{
+    int returnAux = -1;
+    int i;
+    void * element1;
+    if(this != NULL && pFunc != NULL)
+    {
+        for ( i= 0; i < ll_len(this); i++)
+        {
+            element1 = ll_get(this,i);
+            if(pFunc(element1)== 0)
+            {
+                returnAux = 0;
+            }
+        }
+    }
+    return returnAux;
 }
